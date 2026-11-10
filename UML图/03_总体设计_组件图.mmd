@@ -1,0 +1,23 @@
+graph LR
+    subgraph Frontend[前端应用 Vue]
+        V[页面 Views]
+        R[路由 Router]
+        P[状态 Pinia]
+        A[API Request Axios]
+    end
+    
+    subgraph Backend[后端 Spring Boot]
+        C[Controller 接口层]
+        S[Service 业务层]
+        M[Mapper 数据访问层]
+        J[JWT/Exception/Config]
+    end
+    
+    subgraph Database
+        MySQL[(MySQL<br/>业务数据持久化)]
+        Redis[(Redis<br/>缓存/临时数据)]
+    end
+    
+    Frontend -->|HTTP/API| Backend
+    Backend --> MySQL
+    Backend --> Redis

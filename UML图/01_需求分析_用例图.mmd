@@ -1,0 +1,46 @@
+graph TB
+    subgraph 艾宾浩斯词汇记忆学习系统
+        U1[注册/登录]
+        U2[浏览词库]
+        U3[创建学习计划]
+        U4[学习单词]
+        U5[复习单词]
+        U6[查看错词本]
+        U7[每日打卡]
+        U8[查看学习统计]
+        U9[调整每日目标]
+        A1[用户管理]
+        A2[词库管理]
+        A3[单词管理]
+        A4[公告管理]
+        A5[操作日志查看]
+        A6[后台数据统计]
+        S1[生成复习任务]
+        S2[更新掌握状态]
+        S3[汇总统计数据]
+    end
+    
+    User((普通用户))
+    Admin((管理员))
+    System((系统))
+    
+    User --> U1
+    User --> U2
+    User --> U3
+    User --> U4
+    User --> U5
+    User --> U6
+    User --> U7
+    User --> U8
+    User --> U9
+    
+    Admin --> A1
+    Admin --> A2
+    Admin --> A3
+    Admin --> A4
+    Admin --> A5
+    Admin --> A6
+    
+    System --> S1
+    System --> S2
+    System --> S3

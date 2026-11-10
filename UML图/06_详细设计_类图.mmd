@@ -1,0 +1,78 @@
+classDiagram
+    class User {
+        +Long id
+        +String username
+        +String password
+        +String nickname
+        +String role
+        +String status
+    }
+    
+    class StudyPlan {
+        +Long id
+        +Long userId
+        +Long bookId
+        +Integer planWordCount
+        +Integer reviewMultiplier
+    }
+    
+    class WordBook {
+        +Long id
+        +String name
+        +String category
+        +String type
+        +Integer wordCount
+    }
+    
+    class Word {
+        +Long id
+        +Long bookId
+        +String word
+        +String meaning
+        +String phonetic
+        +String example
+    }
+    
+    class StudyRecord {
+        +Long id
+        +Long userId
+        +Long wordId
+        +String result
+        +Integer masteryLevel
+        +LocalDateTime studyTime
+    }
+    
+    class ReviewSchedule {
+        +Long id
+        +Long userId
+        +Long wordId
+        +Integer round
+        +LocalDateTime nextReviewTime
+        +String status
+    }
+    
+    class WrongWord {
+        +Long id
+        +Long userId
+        +Long wordId
+        +Integer wrongCount
+        +LocalDateTime lastWrongTime
+    }
+    
+    class DailyGoal {
+        +Long id
+        +Long userId
+        +Integer targetWordCount
+        +Integer targetStudyMinutes
+    }
+    
+    User "1" -- "1" StudyPlan
+    StudyPlan "1" -- "1" WordBook
+    WordBook "1" -- "*" Word
+    User "1" -- "*" StudyRecord
+    StudyRecord "*" -- "1" Word
+    User "1" -- "*" ReviewSchedule
+    ReviewSchedule "*" -- "1" Word
+    User "1" -- "*" WrongWord
+    WrongWord "*" -- "1" Word
+    User "1" -- "1" DailyGoal

@@ -1,0 +1,20 @@
+flowchart TD
+    Start([开始]) --> Login[用户登录]
+    Login --> ViewOverview[查看学习总览]
+    ViewOverview --> HasPlan{是否已有学习计划?}
+    HasPlan -->|否| CreatePlan[选择词库并创建计划]
+    HasPlan -->|是| EnterStudy[进入学习页面]
+    CreatePlan --> GetTasks[获取今日任务: 新词 + 复习]
+    EnterStudy --> GetTasks
+    
+    GetTasks --> ShowWord[展示单词]
+    ShowWord --> Submit[用户提交学习结果]
+    Submit --> Know{是否认识?}
+    Know -->|是| UpdateMastery[更新掌握状态]
+    Know -->|否| AddWrong[加入或更新错词本]
+    UpdateMastery --> GenReview[生成/更新复习任务]
+    AddWrong --> GenReview
+    
+    GenReview --> UpdateStats[更新统计数据]
+    UpdateStats --> Checkin[完成打卡]
+    Checkin --> End([结束])

@@ -1,0 +1,75 @@
+erDiagram
+    sys_user ||--o{ study_record : "1对多"
+    sys_user ||--|| study_plan : "1对1"
+    sys_user ||--o{ review_schedule : "1对多"
+    sys_user ||--o{ wrong_word : "1对多"
+    sys_user ||--o{ daily_checkin : "1对多"
+    sys_user ||--|| daily_goal : "1对1"
+    sys_user ||--o{ operation_log : "1对多"
+    
+    word_book ||--o{ word : "1对多"
+    word_book ||--o{ study_plan : "1对多"
+    
+    word ||--o{ study_record : "1对多"
+    word ||--o{ review_schedule : "1对多"
+    word ||--o{ wrong_word : "1对多"
+    
+    sys_user {
+        bigint id PK
+        varchar username
+        varchar password
+        varchar nickname
+        varchar role
+        tinyint status
+    }
+    
+    word_book {
+        bigint id PK
+        varchar name
+        varchar category
+        varchar type
+        int word_count
+    }
+    
+    word {
+        bigint id PK
+        bigint book_id FK
+        varchar word
+        text meaning
+        varchar phonetic
+        text example
+    }
+    
+    study_plan {
+        bigint id PK
+        bigint user_id FK
+        bigint book_id FK
+        int plan_word_count
+        int review_multiplier
+    }
+    
+    study_record {
+        bigint id PK
+        bigint user_id FK
+        bigint word_id FK
+        varchar result
+        int mastery_level
+        datetime study_time
+    }
+    
+    review_schedule {
+        bigint id PK
+        bigint user_id FK
+        bigint word_id FK
+        int round
+        datetime next_review_time
+        varchar status
+    }
+    
+    wrong_word {
+        bigint id PK
+        bigint user_id FK
+        bigint word_id FK
+        int wrong_count
+        datetime last_wrong_time
+    }

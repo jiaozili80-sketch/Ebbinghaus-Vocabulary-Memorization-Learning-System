@@ -1,0 +1,18 @@
+sequenceDiagram
+    actor User as 用户
+    participant Vue as Study.vue
+    participant Controller as StudyController
+    participant Service as StudyService
+    participant DB as 数据库
+    
+    User->>Vue: 点击认识/不认识
+    Vue->>Controller: POST /api/study/result
+    Controller->>Service: submitResult()
+    Service->>DB: 保存学习记录
+    Service->>DB: 更新掌握状态
+    Service->>DB: 生成复习计划
+    Service->>DB: 如错误加入错词本
+    DB-->>Service: 返回数据库结果
+    Service-->>Controller: 返回业务结果
+    Controller-->>Vue: 返回接口响应
+    Vue-->>User: 展示下一个单词

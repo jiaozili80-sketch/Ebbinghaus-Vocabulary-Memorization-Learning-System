@@ -1,0 +1,12 @@
+graph TD
+    Root[com.ebbinghaus.vocab]
+    
+    Root --> Controller[controller<br/>接收请求，返回响应]
+    Root --> Service[service<br/>处理业务规则]
+    Root --> Mapper[mapper<br/>访问数据库]
+    Root --> Domain[domain<br/>entity / dto / vo]
+    Root --> Config[config<br/>系统配置]
+    Root --> Exception[exception<br/>异常处理]
+    Root --> Context[context<br/>当前用户上下文]
+    Root --> Common[common<br/>公共返回和常量]
+    Root --> Util[util<br/>JWT等工具]

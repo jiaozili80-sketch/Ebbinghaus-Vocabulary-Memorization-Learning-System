@@ -1,0 +1,50 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: vocabulary-learning-system
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://localhost:3306/ebbinghaus_vocab?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      timeout: 3000ms
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.ebbinghaus.vocab.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:}
+    expiration: 86400000
+  review:
+    intervals-minutes: 5,30,720,1440,2880,5760,10080,21600
+  admin:
+    bootstrap:
+      enabled: ${ADMIN_BOOTSTRAP_ENABLED:false}
+      username: ${ADMIN_BOOTSTRAP_USERNAME:admin}
+      password: ${ADMIN_BOOTSTRAP_PASSWORD:}
+      email: ${ADMIN_BOOTSTRAP_EMAIL:}

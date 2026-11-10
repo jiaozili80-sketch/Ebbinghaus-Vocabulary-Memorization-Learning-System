@@ -1,0 +1,11 @@
+graph TB
+    Browser[用户浏览器<br/>PC / Mobile]
+    Frontend[前端静态资源服务<br/>Vite / Nginx<br/>5173]
+    Backend[Spring Boot API<br/>localhost:8080]
+    MySQL[(MySQL<br/>3306)]
+    Redis[(Redis<br/>6379)]
+    
+    Browser -->|HTTP| Frontend
+    Frontend -->|/api| Backend
+    Backend -->|JDBC| MySQL
+    Backend -->|Redis Client| Redis
